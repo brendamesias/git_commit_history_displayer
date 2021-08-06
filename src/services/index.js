@@ -1,4 +1,4 @@
-export const getGitCommitHistory = async(payload) => {
+const getGitCommitHistory = async(payload) => {
     try {
         const api = 'https://api.github.com/repos/brendamesias/git_commit_history_displayer/commits';
         const options = {
@@ -6,9 +6,11 @@ export const getGitCommitHistory = async(payload) => {
             method: 'GET',
         };
         const response = await fetch(api, options);
-        // const signupResponse = await response.json();
-        return response
+        const responseJson = await response.json();
+        return responseJson
     } catch (error) {
         console.trace(error);
     }
 }
+
+export default getGitCommitHistory;

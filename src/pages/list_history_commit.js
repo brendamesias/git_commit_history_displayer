@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card, Button} from 'react-bootstrap';
+import getGitCommitHistory from '../services/index'
 
 const ListHistoryCommit = () => {
+
+    const [commits, setCommits] = useState([])
+
+    useEffect(() => {
+        getAllCommits();
+    }, []); 
+
+    const getAllCommits = async () => {
+        const allCommits = await getGitCommitHistory()
+        setCommits(allCommits);
+    }
+
     return (
         <Card style={{textAlign: 'initial'}}>
             <Card.Header>Featured</Card.Header>
